@@ -1,4 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Hello World!</h1>
+    <div class="row mb-2 mt-4">
+        <div class="col-12 text-center pt-3">
+            <h1>Latest Crypto Currency News Articles</h1>
+            <p>Get news feeds and articles from all major crypto news providers that CryptoCompare has integrated with.
+                You can also retrieve a full list of categories, a great way to filter through the news articles.</p>
+            <h4>Want to read more news? Click the link on the image</h4>
+        </div>
+    </div>
+    <div class="pt-2 pl-md-1 mb-3 mb-lg-4">
+        <div class="row">
+            {% for news in api.Data %}
+                <div class="col-4 p-1">
+                    <div class="card border-0 text-white overflow zoom">
+                        <div class="position-relative">
+                            <div class="text-center">
+                                <a href="{{ news.url }}" target="_blank">
+                                    <img class="img-fluid rounded"
+                                         src="{{ news.imageurl }}"
+                                         alt="{{ news.source_info.img }}">
+                                </a>
+                            </div>
+                            <div class="position-absolute b-0">
+                                <a class="badge badge-pill badge-primary"
+                                   href="{{ news.guid }}" target="_blank">{{ news.source_info.name }}</a>
+                            </div>
+                        </div>
+                        <div class="alert alert-light text-center bg-transparent border-0">
+                            <a href="{{ news.url }}" class="alert-link" target="_blank">{{ news.title }}</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock content %}

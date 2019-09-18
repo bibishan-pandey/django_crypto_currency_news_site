@@ -3,4 +3,9 @@ from django.shortcuts import render
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html', {})
+    import requests
+    import json
+    api_request = requests.get("https://min-api.cryptocompare.com/data/v2/news/?lang=EN")
+    api = json.loads(api_request.content)
+    # print(api)
+    return render(request, 'home.html', {'api': api})
