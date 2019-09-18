@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="mb-2 pt-4">
+        <a href="{% url 'home' %}" class="font-italic lead">&larr; Back to home</a>
+        {% if notfound %}
+            <p class="display-3 text-center text-warning">{{ notfound }}</p>
+        {% else %}
+            <p class="display-3 font-weight-bold text-center text-danger">{{ crypto_api.Response }}</p>
+            <p class="display-4 font-italic text-center text-warning">{{ crypto_api.Message }}</p>
+            {% for key,value in crypto_api.DISPLAY.items %}
+                <div class="jumbotron border bg-transparent">
+                    <h1 class="display-4">{{ key }}</h1>
+                    <hr class="my-4">
+                    <div class="row">
+                        <div class="col-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <th scope="col-3">MARKET CAP</th>
+                                    <td scope="col-3 lead">{{ value.USD.MKTCAP }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">PRICE</th>
+                                    <td scope="col-3 lead">{{ value.USD.PRICE }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">VOLUME DAY</th>
+                                    <td scope="col-3 lead">{{ value.USD.VOLUMEDAY }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">VOLUME DAY TO</th>
+                                    <td scope="col-3 lead">{{ value.USD.VOLUMEDAYTO }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">VOLUME (24h)</th>
+                                    <td scope="col-3 lead">{{ value.USD.VOLUME24HOUR }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">VOLUME (24h) TO</th>
+                                    <td scope="col-3 lead">{{ value.USD.VOLUME24HOURTO }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">VOLUME HOUR</th>
+                                    <td scope="col-3 lead">{{ value.USD.VOLUMEHOUR }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">VOLUME HOUR TO</th>
+                                    <td scope="col-3 lead">{{ value.USD.VOLUMEHOURTO }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">LAST VOLUME</th>
+                                    <td scope="col-3 lead">{{ value.USD.LASTVOLUME }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">LAST VOLUME TO</th>
+                                    <td scope="col-3 lead">{{ value.USD.LASTVOLUMETO }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-6">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <th scope="col-3">OPEN HOUR</th>
+                                    <td scope="col-3 lead">{{ value.USD.OPENHOUR }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">HIGH HOUR</th>
+                                    <td scope="col-3 lead">{{ value.USD.HIGHHOUR }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">LOW HOUR</th>
+                                    <td scope="col-3 lead">{{ value.USD.LOWHOUR }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">CHANGE (24h)</th>
+                                    <td scope="col-3 lead">{{ value.USD.CHANGE24HOUR }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">OPEN DAY</th>
+                                    <td scope="col-3 lead">{{ value.USD.OPENDAY }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">DAILY HIGH</th>
+                                    <td scope="col-3 lead">{{ value.USD.HIGHDAY }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">DAILY LOW</th>
+                                    <td scope="col-3 lead">{{ value.USD.LOWDAY }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">OPEN (24h)</th>
+                                    <td scope="col-3 lead">{{ value.USD.OPEN24HOUR }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">LAST UPDATE</th>
+                                    <td scope="col-3 lead">{{ value.USD.LASTUPDATE }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col-3">LAST MARKET</th>
+                                    <td scope="col-3 lead">{{ value.USD.LASTMARKET }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock content %}
